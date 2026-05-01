@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Este metatag permite que se vea bien en celulares -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Los 15 de Daniela Beatriz</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dorado: #d4af37;
+            --rosa-claro: #fff5f8;
+            --lila: #c8a2c8;
+            --blanco: #ffffff;
+            --oscuro: #333333;
+            --rojo-pasion: #bc0000;
+        }
+
+        * { box-sizing: border-box; }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--rosa-claro);
+            color: var(--oscuro);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- PÉTALOS DE ROSAS --- */
+        .petalo {
+            position: fixed;
+            top: -10%;
+            user-select: none;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 25px;
+            animation: caer linear infinite;
+        }
+
+        @keyframes caer {
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(720deg) translateX(50px); opacity: 0; }
+        }
+
+        /* --- PORTADA (HERO) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('rosas.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .contenedor-texto {
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px);
+            border-radius: 30px;
+            border: 1px solid var(--dorado);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            max-width: 90%;
+            width: 600px;
+        }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 10vw, 6rem); margin: 0; color: var(--blanco); }
+
+        /* --- TEMPORIZADOR --- */
+        .contador-full {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .tiempo-box {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--dorado);
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .t-num { display: block; font-size: 1.8rem; font-weight: 600; color: var(--dorado); }
+        .t-lab { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- SECCIONES --- */
+        section { padding: 80px 20px; text-align: center; }
+        .titulo-seccion { font-family: 'Dancing Script', cursive; font-size: 3rem; color: var(--lila); margin-bottom: 20px; }
+
+        /* --- FRASES FAMILIARES --- */
+        .dedicatorias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .tarjeta-familia {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border-bottom: 5px solid var(--dorado);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .tarjeta-familia:hover { transform: translateY(-5px); }
+
+        .tarjeta-familia p { font-style: italic; font-size: 1rem; line-height: 1.6; color: #555; }
+
+        .firma { display: block; margin-top: 15px; font-weight: 600; color: var(--dorado); font-size: 0.9rem; }
+
+        /* --- GALERÍA --- */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .foto-marco { border-radius: 15px; height: 280px; overflow: hidden; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .foto-marco img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- BURBUJAS --- */
+        .contenedor-burbujas { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; max-width: 900px; margin: 0 auto; }
+        .burbuja {
+            padding: 12px 20px; background: white; border: 1px solid var(--dorado);
+            border-radius: 50px; font-weight: 500; font-size: 0.9rem;
+            animation: flotar 4s ease-in-out infinite; transition: 0.3s;
+        }
+
+        /* --- AJUSTES CELULAR (RESPONSIVE) --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.8rem !important; }
+            .contador-full { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .titulo-seccion { font-size: 2.5rem; }
+            .hero { background-attachment: scroll; } /* Mejor rendimiento en móvil */
+            section { padding: 60px 15px; }
+        }
+
+        @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .music-btn {
+            position: fixed; bottom: 20px; right: 20px; background: var(--dorado);
+            color: white; border: none; border-radius: 50%; width: 60px; height: 60px;
+            cursor: pointer; z-index: 10000; font-size: 24px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PORTADA -->
+    <section class="hero" style="padding:0;">
+        <div class="contenedor-texto">
+            <p style="letter-spacing: 5px; font-weight: 300; font-size: 0.9rem;">DANIELA BEATRIZ</p>
+            <h1>Rodríguez Mejía</h1>
+            <div class="contador-full">
+                <div class="tiempo-box"><span id="d" class="t-num">00</span><span class="t-lab">Días</span></div>
+                <div class="tiempo-box"><span id="h" class="t-num">00</span><span class="t-lab">Hrs</span></div>
+                <div class="tiempo-box"><span id="m" class="t-num">00</span><span class="t-lab">Min</span></div>
+                <div class="tiempo-box"><span id="s" class="t-num">00</span><span class="t-lab">Seg</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIENVENIDA -->
+    <section style="background: white;">
+        <h2 class="titulo-seccion">02 de Mayo, 2026</h2>
+        <p style="font-size: 1.2rem; font-style: italic; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+            "Dejas atrás un mundo de juegos para empezar uno de sueños. Que cada paso que des desde hoy te acerque a la mujer increíble que estás destinada a ser."
+        </p>
+    </section>
+
+    <!-- FRASES FAMILIARES -->
+    <section>
+        <h2 class="titulo-seccion">Palabras del Corazón</h2>
+        <div class="dedicatorias-grid">
+            <div class="tarjeta-familia">
+                <p>"Eres nuestro mayor orgullo. Que este día sea tan especial como tú lo eres para nosotros."</p>
+                <span class="firma">- Papá y Mamá</span>
+            </div>
+            <div class="tarjeta-familia" style="border-color: var(--lila);">
+                <p>"¡Felices 15! Siempre estaré para cuidarte y compartir aventuras contigo. Te quiero."</p>
+                <span class="firma" style="color: var(--lila);">- Tu Hermano</span>
+            </div>
+            <div class="tarjeta-familia">
+                <p>"Que Dios ilumine tu camino hoy y siempre. Disfruta esta etapa maravillosa."</p>
+                <span class="firma">- Tus Abuelos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- BURBUJAS DE DESEOS -->
+    <section style="background: white;">
+        <h2 class="titulo-seccion">Deseos para ti</h2>
+        <div class="contenedor-burbujas">
+            <div class="burbuja" style="animation-delay: 0s;">✨ Felicidad</div>
+            <div class="burbuja" style="animation-delay: 0.5s;">💖 Amor</div>
+            <div class="burbuja" style="animation-delay: 1.2s;">🌟 Éxito</div>
+            <div class="burbuja" style="animation-delay: 0.3s;">🚀 Sueños</div>
+            <div class="burbuja" style="animation-delay: 0.8s;">💪 Salud</div>
+            <div class="burbuja" style="animation-delay: 1.5s;">🎨 Brillo</div>
+        </div>
+    </section>
+
+    <!-- GALERÍA (8 FOTOS) -->
+    <section>
+        <h2 class="titulo-seccion">Mis Mejores Momentos</h2>
+        <div class="galeria-grid">
+            <div class="foto-marco"><img src="foto1.JPG"></div>
+            <div class="foto-marco"><img src="foto2.jpg"></div>
+            <div class="foto-marco"><img src="foto3.jpg"></div>
+            <div class="foto-marco"><img src="foto4.jpg"></div>
+            <div class="foto-marco"><img src="foto5.jpeg"></div>
+            <div class="foto-marco"><img src="foto6.jpeg"></div>
+            <div class="foto-marco"><img src="foto7.jpg"></div>
+            <div class="foto-marco"><img src="foto8.jpeg"></div>
+        </div>
+    </section>
+
+    <!-- MÚSICA -->
+    <audio id="miMusica" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+    <button class="music-btn" onclick="toggleMusica()" id="btnMusica">🎵</button>
+
+    <script>
+        // PÉTALOS
+        function crearPetalo() {
+            const petalo = document.createElement('div');
+            petalo.innerHTML = '🌹'; 
+            petalo.classList.add('petalo');
+            petalo.style.left = Math.random() * 100 + 'vw';
+            petalo.style.animationDuration = Math.random() * 3 + 4 + 's';
+            petalo.style.opacity = Math.random() * 0.7 + 0.3;
+            document.body.appendChild(petalo);
+            setTimeout(() => { petalo.remove(); }, 6000);
+        }
+        setInterval(crearPetalo, 400);
+
+        // CONTADOR
+        const objetivo = new Date("May 2, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const ahora = new Date().getTime();
+            const diff = objetivo - ahora;
+            document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }, 1000);
+
+        function toggleMusica() {
+            const m = document.getElementById('miMusica');
+            const b = document.getElementById('btnMusica');
+            if (m.paused) { m.play(); b.innerText = "⏸️"; } else { m.pause(); b.innerText = "🎵"; }
+        }
+    </script>
+</body>
+</html>
